@@ -111,6 +111,7 @@
 
 <script type="text/javascript" src="{{ url('DataTables/datatables.min.js') }}"></script>
 
+
 <script type="text/javascript">
     var url = '{{ url("api/produk/dataTable") }}';
     var tabel = $("#data-list").DataTable({
