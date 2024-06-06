@@ -13,8 +13,7 @@
         </div>
         <div class="col">
             <input type="submit" value="Cari ID" class="btn btn-primary" style="margin-top:33px">
-            <input type="submit" value="Cari Produk" class="btn btn-primary" style="margin-top:33px" 
-            id="">
+            <input type="submit" value="Cari Produk" class="btn btn-primary" style="margin-top:33px" id="">
         </div>
     </div>
 </form>
@@ -89,8 +88,7 @@
                     dataTable += '<td>'+value.deskripsi+'</td>';
                     dataTable += '<td><img src="'+value.foto_produk+'"></td>';
                     dataTable += '<td><a href="'+url_edit+'" class="btn btn-info">Ubah</a> <a 
-                    href="#" '+eventHapus+' class="btn btn-danger">Hapus</a> <hr/> <a href="#" 
-                    '+event_add_to_cart+' class="btn btn-warning">Tambahkan Ke Keranjang</a></td>';
+                    href="#" '+eventHapus+' class="btn btn-danger">Hapus</a> <hr/> <a href="#" '+event_add_to_cart+' class="btn btn-warning">Tambahkan Ke Keranjang</a></td>';
                     dataTable += '</tr>';
                 });
                 $( "#data-list" ).append( dataTable );
