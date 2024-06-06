@@ -225,7 +225,7 @@ class Produk extends Controller
                 break;
         }
         $data_db_total = Produkmodel::all();
-        $data_db_filtered = Produkmodel::where('nama_produk', 'like', '%'.$search['value'].'%')->get();
+        $data_db_filtered = Produkmodel::where('nama_produk', 'like', '%'.$search['value'].'%');
 
         if ($search_stok != '' && $search_stok != null) {
             $data_db_filtered = $data_db_filtered->where('stok', '<=', $search_stok);
