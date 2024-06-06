@@ -25,6 +25,7 @@ Route::get('/produk/kode/{kode}', [Produk::class, 'getByKode']);
 Route::post('/produk/input', [Produk::class, 'store']);
 Route::put('/produk/input', [Produk::class, 'update']);
 Route::delete('/produk/hapus', [Produk::class, 'destroy']);
+Route::get('/produk/dataTable', [Produk::class, 'dataDatables']);
 
 Route::get('/keranjang/all', [Keranjang::class, 'getList']);
 Route::post('/keranjang', [Keranjang::class, 'store']);
