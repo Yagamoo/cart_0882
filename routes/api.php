@@ -4,6 +4,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Produk;
 use App\Http\Controllers\Keranjang;
+use App\Http\Controllers\Transaksi;
 
 /*
 |--------------------------------------------------------------------------
@@ -25,7 +26,13 @@ Route::get('/produk/kode/{kode}', [Produk::class, 'getByKode']);
 Route::post('/produk/input', [Produk::class, 'store']);
 Route::put('/produk/input', [Produk::class, 'update']);
 Route::delete('/produk/hapus', [Produk::class, 'destroy']);
-Route::get('/produk/dataTable', [Produk::class, 'dataDatables']);
 
 Route::get('/keranjang/all', [Keranjang::class, 'getList']);
 Route::post('/keranjang', [Keranjang::class, 'store']);
+
+Route::get('/produk/dataTable', [Produk::class, 'dataDatables']);
+Route::get('/transaksi/dataTable', [Transaksi::class, 'dataDatables']);
+
+Route::get('/provinsi', [Keranjang::class, 'get_prov']);
+Route::get('/kota/{kode}', [Keranjang::class, 'get_kota']);
+Route::get('/kecamatan/{kode}', [Keranjang::class, 'get_kec']);

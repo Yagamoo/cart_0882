@@ -198,6 +198,7 @@ class Produk extends Controller
         return json_encode($data);
     }
 
+
     public function dataDatables(Request $request)
     {
         $search = $request->query('search');
@@ -208,22 +209,28 @@ class Produk extends Controller
             case '0':
                 $orderby = 'id_produk';
                 break;
+
             case '1':
                 $orderby = 'kode_produk';
                 break;
+
             case '2':
                 $orderby = 'nama_produk';
                 break;
+
             case '3':
                 $orderby = 'stok';
                 break;
+
             case '4':
                 $orderby = 'harga';
                 break;
+
             default:
                 $orderby = 'id_produk';
                 break;
         }
+
         $data_db_total = Produkmodel::all();
         $data_db_filtered = Produkmodel::where('nama_produk', 'like', '%'.$search['value'].'%');
 
@@ -237,7 +244,6 @@ class Produk extends Controller
 
         if ($search_stok != '' && $search_stok != null) {
             $data_db = $data_db->where('stok', '<=', $search_stok);
-
         }
 
         $data_db = $data_db->offset($request->query('start'))
@@ -245,17 +251,18 @@ class Produk extends Controller
         ->orderByRaw($orderby.' '.$order[0]['dir'])
         ->get(['produk.*']);
 
+
         $data_formatted = [];
 
         foreach ($data_db as $key => $value) {
             $url_edit = url("produk/form"). '/' . $value->id_produk;;
             $eventHapus = 'onclick="hapusData('.$value->id_produk.')"';
-            $event_add_to_cart = 'onclick="add_to_cart('.$value->id_produk.')"'; ;
-            $action = '<a href="'.$url_edit.'" class="btn btn-info">Ubah</a> <a href="#"'.$eventHapus.' class="btn btn-danger">Hapus</a> <hr/> <a href="#" '.$event_add_to_cart.' class="btn btn-warning">Tambahkan Ke Keranjang</a>';
-        
+            $event_add_to_cart = 'onclick="add_to_cart('.$value->id_produk.')"';            ;
+            $action = '<a href="'.$url_edit.'" class="btn btn-info">Ubah</a> <a href="#" '.$eventHapus.' class="btn btn-danger">Hapus</a> <hr/> <a href="#" '.$event_add_to_cart.' class="btn btn-warning">Tambahkan Ke Keranjang</a>';
+
             $harga = 'Rp '.number_format($value->harga);
-        
             $image = '<img src="'.$value->foto_produk.'" width=150>';
+
             $row_data = [];
             $row_data[] = $key+1;
             $row_data[] = $value->kode_produk;
@@ -268,6 +275,7 @@ class Produk extends Controller
 
             $data_formatted[] = $row_data;
         }
+
         $data_json = [
             'draw' => $request->query('draw'),
             'recordsTotal' => count($data_db_total),
@@ -277,6 +285,4 @@ class Produk extends Controller
 
         return json_encode($data_json);
     }
-
-
 }
